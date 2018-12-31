@@ -57928,6 +57928,29 @@ window.Echo.channel('test-event').listen('ExampleEvent', function (e) {
 window.Echo.private('user.' + window.Laravel.user).listen('PrivateEvent', function (e) {
   console.log('Private Channel ON');
 });
+/*
+  chat.${roomId}
+ HARDCODE ROOM ID = 1
+
+*/
+
+window.Echo.join("chat.1").here(function (users) {
+  var users_list = new Array();
+  ;
+
+  for (var key in users) {
+    users_list.push(users[key].name);
+  }
+
+  users_list = users_list.join(',');
+  console.log(users_list + ' on this channel.');
+}).joining(function (user) {
+  console.log(user.name + ' is joining now');
+}).leaving(function (user) {
+  console.log(user.name + ' is leaving now');
+}).listen('PresenceEvent', function (e) {
+  console.log('Listening Presence Event');
+});
 
 /***/ }),
 

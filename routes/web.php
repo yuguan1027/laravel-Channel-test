@@ -21,6 +21,9 @@ Route::get('test-public-channel', function(){
 Route::get('test-private-channel', function(){
     broadcast(new \App\Events\PrivateEvent( \Auth()->user() ));
 });
+Route::get('test-presence-channel', function(){
+    broadcast(new \App\Events\PresenceEvent( 1 ));
+});
 
 
 Auth::routes();
