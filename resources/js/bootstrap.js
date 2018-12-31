@@ -67,5 +67,11 @@ window.Echo = new Echo({
 
 window.Echo.channel('test-event')
     .listen('ExampleEvent', (e) => {
-        console.log(e);
+        console.log('Public Channe ON');
     });
+
+
+    window.Echo.private('user.' + window.Laravel.user)
+      .listen('PrivateEvent', (e) => {
+          console.log('Private Channel ON');
+      });

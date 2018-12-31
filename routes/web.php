@@ -15,6 +15,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('test-broadcast', function(){
+Route::get('test-public-channel', function(){
     broadcast(new \App\Events\ExampleEvent);
 });
+Route::get('test-private-channel', function(){
+    broadcast(new \App\Events\PrivateEvent( \Auth()->user() ));
+});
+
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -46334,7 +46334,10 @@ window.Echo = new laravel_echo__WEBPACK_IMPORTED_MODULE_0__["default"]({
   host: window.location.hostname + ':6001'
 });
 window.Echo.channel('test-event').listen('ExampleEvent', function (e) {
-  console.log(e);
+  console.log('Public Channe ON');
+});
+window.Echo.private('user.' + window.Laravel.user).listen('PrivateEvent', function (e) {
+  console.log('Private Channel ON');
 });
 
 /***/ }),
